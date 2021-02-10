@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+#  annotations:
+#    "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: fe
+  name: fe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fe
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fe
+    spec:
+      containers:
+      - image: fsedano/fe:0.14
+        name: fe
+      - image: jaegertracing/jaeger-agent
+        name: jaegeragent
+        args:
+          - --reporter.grpc.host-port=dns:///simplest-collector-headless.observability:14250
+          - --reporter.type=grpc
