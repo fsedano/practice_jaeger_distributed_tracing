@@ -7,4 +7,5 @@ RUN pip3 install -r requirements.txt
 COPY app/app.py /app
 COPY bootstrap.sh /
 
-CMD ["/bootstrap.sh"]
+#CMD ["/bootstrap.sh"]
+CMD ["/bin/bash", "-c", "sleep 9999999"]

@@ -1,0 +1,13 @@
+name: fe
+labels:
+  app: fe
+container: fe
+image: fsedano/fe:0.32
+command: bash
+sync:
+- .:/usr/src/app
+forward:
+- 5000:5000
+reverse:
+- 9000:9000
+persistentVolume: {}

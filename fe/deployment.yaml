@@ -18,10 +18,23 @@ spec:
         app: fe
     spec:
       containers:
-      - image: fsedano/fe:0.14
+      - image: fsedano/fe:0.32
         name: fe
       - image: jaegertracing/jaeger-agent
         name: jaegeragent
         args:
           - --reporter.grpc.host-port=dns:///simplest-collector-headless.observability:14250
           - --reporter.type=grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe
+spec:
+  type: LoadBalancer
+  selector:
+    app: fe
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000

@@ -1,1 +1,4 @@
 jaeger-client
+Flask-Opentracing
+flask
+requests
